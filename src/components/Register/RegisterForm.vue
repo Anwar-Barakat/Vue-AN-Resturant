@@ -11,9 +11,6 @@
                     required
                     v-model="name"
                 />
-                <span class="error-feedback" v-if="v$.name.$error">
-                    {{ v$.name.$errors[0].$message }}
-                </span>
             </div>
             <div class="box">
                 <input
@@ -25,9 +22,6 @@
                     required
                     v-model="email"
                 />
-                <span class="error-feedback" v-if="v$.email.$error">
-                    {{ v$.email.$errors[0].$message }}
-                </span>
             </div>
             <div class="box">
                 <input
@@ -39,14 +33,13 @@
                     required
                     v-model="password"
                 />
-                <span class="error-feedback" v-if="v$.password.$error">
-                    {{ v$.password.$errors[0].$message }}
-                </span>
             </div>
             <div class="row">
                 <p>
                     You have an account ?
-                    <a href=""> here </a>
+                    <a href="" @click.prevent="redirectTo({ link: 'login' })">
+                        here
+                    </a>
                 </p>
             </div>
             <div class="row">
@@ -63,6 +56,7 @@
 <style lang="scss" scoped></style>
 
 <script>
+import { mapActions } from "vuex";
 export default {
     name: "RegisterForm",
     data() {
@@ -71,6 +65,9 @@ export default {
             password: "",
             email: "",
         };
+    },
+    methods: {
+        ...mapActions(["redirectTo"]),
     },
 };
 </script>

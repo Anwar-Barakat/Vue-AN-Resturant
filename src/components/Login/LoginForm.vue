@@ -22,10 +22,15 @@
                     required
                 />
             </div>
-            <div class="row mb-3">
+            <div class="row">
                 <p>
                     Don't have an account ?
-                    <a href=""> here </a>
+                    <a
+                        href=""
+                        @click.prevent="redirectTo({ link: 'register' })"
+                    >
+                        here
+                    </a>
                 </p>
             </div>
             <div class="row">
@@ -37,9 +42,8 @@
     </section>
 </template>
 
-<style lang="scss" scoped></style>
-
 <script>
+import { mapActions } from "vuex";
 export default {
     name: "LoginForm",
     data() {
@@ -49,7 +53,8 @@ export default {
             email: "",
         };
     },
+    methods: {
+        ...mapActions(["redirectTo"]),
+    },
 };
 </script>
-
-<style></style>
