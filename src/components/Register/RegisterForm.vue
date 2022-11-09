@@ -5,39 +5,51 @@
             <div class="box">
                 <input
                     type="text"
-                    name="name"
                     placeholder="type your name"
                     maxlength="20"
-                    required
                     v-model="name"
                 />
+                <span
+                    class="block mt-1 text-red-600 font-semibold text-sm"
+                    v-if="v$.name.$error"
+                    >{{ v$.name.$errors[0].$message }}</span
+                >
             </div>
             <div class="box">
                 <input
                     type="email"
-                    name="email"
                     placeholder="type your email"
                     maxlength="50"
-                    oninput="this.value = this.value.replace(/\s/g, '')"
-                    required
                     v-model="email"
                 />
+                <span
+                    class="block mt-1 text-red-600 font-semibold text-sm"
+                    v-if="v$.email.$error"
+                    >{{ v$.email.$errors[0].$message }}</span
+                >
             </div>
             <div class="box">
                 <input
                     type="password"
-                    name="password"
                     placeholder="type your password"
                     maxlength="20"
-                    oninput="this.value = this.value.replace(/\s/g, '')"
-                    required
                     v-model="password"
                 />
+                <span
+                    class="block mt-1 text-red-600 font-semibold text-sm"
+                    v-if="v$.password.$error"
+                >
+                    {{ v$.password.$errors[0].$message }}
+                </span>
             </div>
             <div class="row">
                 <p>
                     You have an account ?
-                    <a href="" @click.prevent="redirectTo({ link: 'login' })">
+                    <a
+                        href=""
+                        class="link"
+                        @click.prevent="redirectTo({ link: 'login' })"
+                    >
                         here
                     </a>
                 </p>
@@ -57,17 +69,30 @@
 
 <script>
 import { mapActions } from "vuex";
+import useValidate from "@vuelidate/core";
+import { required, email, minLength } from "@vuelidate/validators";
 export default {
     name: "RegisterForm",
     data() {
         return {
+            v$: useValidate(),
             name: "",
             password: "",
             email: "",
         };
     },
     methods: {
+        register() {
+            this.v$.$validate();
+        },
         ...mapActions(["redirectTo"]),
+    },
+    validations() {
+        return {
+            name: { required, minLength: minLength(3) },
+            email: { required, email },
+            password: { required, minLength: minLength(8) },
+        };
     },
 };
 </script>

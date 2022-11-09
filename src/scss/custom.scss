@@ -131,27 +131,35 @@ section {
     margin-bottom: 3rem;
 }
 
+.btn {
+    transition: all 0.5s;
+    background-color: var(--main-color);
+    color: var(--black-color);
+}
+
 .btn,
 .delete-btn {
     margin-top: 1rem;
     display: inline-block;
-    font-size: 1.5rem;
-    padding: 0.5rem 2rem;
+    padding: 0.4rem 2rem;
+    font-weight: 500;
     cursor: pointer;
     transition: 0.5s !important;
-
+    border: 3px solid var(--main-color);
     &:hover {
         letter-spacing: 2px;
+        background-color: var(--white-color);
+        color: var(--main-color);
+        border: 3px solid var(--main-color);
+        font-weight: bold;
     }
-}
-
-.btn {
-    transition: all 0.5s;
-    background-color: var(--main-color) !important;
-    color: var(--black-color);
 }
 
 .delete-btn {
     background-color: var(--second-color);
     color: var(--white-color);
+}
+
+.link {
+    color: var(--second-color) !important;
 }
