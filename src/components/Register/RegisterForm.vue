@@ -72,8 +72,8 @@
 <style lang="scss" scoped></style>
 
 <script>
-import { mapActions } from "vuex";
 import axios from "axios";
+import { mapActions } from "vuex";
 import useValidate from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
 export default {
@@ -86,6 +86,10 @@ export default {
             email: "",
         };
     },
+    mounted() {
+        let user = localStorage.getItem("user-info");
+        if (user) this.redirectTo({ link: "home" });
+    },
     methods: {
         async register() {
             this.v$.$validate();
@@ -95,6 +99,7 @@ export default {
                     email: this.email,
                     password: this.password,
                 });
+                console.log("User added Successfully");
                 if (result.status == 201) {
                     // save data in local storage
                     localStorage.setItem(
@@ -104,7 +109,6 @@ export default {
 
                     // redirect
                     this.redirectTo({ link: "home" });
-                    console.log("User added Successfully");
                 } else console.log("User added Failed");
             }
         },
