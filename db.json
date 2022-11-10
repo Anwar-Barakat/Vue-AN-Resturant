@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "name": "Maxime non qui quia ",
+      "email": "hebacecek@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "id": 1
+    },
+    {
+      "name": "Voluptas sed consequ",
+      "email": "mesopyqefy@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "id": 2
+    },
+    {
+      "name": "Laudantium voluptat",
+      "email": "hyxopyjofo@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "id": 3
+    }
+  ]
+}

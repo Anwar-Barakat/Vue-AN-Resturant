@@ -1,7 +1,7 @@
 <template>
     <section class="form-container">
         <h3>register now</h3>
-        <form action="" method="post">
+        <form>
             <div class="box">
                 <input
                     type="text"
@@ -56,7 +56,11 @@
             </div>
             <div class="row">
                 <div class="form-group">
-                    <button type="submit" class="btn" @click="register()">
+                    <button
+                        type="submit"
+                        class="btn"
+                        @click.prevent="register()"
+                    >
                         Register
                     </button>
                 </div>
@@ -69,6 +73,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import axios from "axios";
 import useValidate from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
 export default {
@@ -82,8 +87,26 @@ export default {
         };
     },
     methods: {
-        register() {
+        async register() {
             this.v$.$validate();
+            if (!this.v$.$error) {
+                let result = await axios.post("http://localhost:3000/users", {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                });
+                if (result.status == 201) {
+                    // save data in local storage
+                    localStorage.setItem(
+                        "user-info",
+                        JSON.stringify(result.data)
+                    );
+
+                    // redirect
+                    this.redirectTo({ link: "home" });
+                    console.log("User added Successfully");
+                } else console.log("User added Failed");
+            }
         },
         ...mapActions(["redirectTo"]),
     },
