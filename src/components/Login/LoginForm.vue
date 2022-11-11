@@ -1,7 +1,10 @@
 <template>
     <section class="form-container">
+        <div class="alert alert-danger" v-if="showMessage">
+            {{ showMessage }}
+        </div>
         <h3>login now</h3>
-        <form action="" method="post">
+        <form>
             <div class="box">
                 <input
                     type="email"
@@ -53,6 +56,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapActions } from "vuex";
 import useValidate from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
@@ -77,11 +81,31 @@ export default {
         };
     },
     data() {
-        return {};
+        return {
+            showMessage: "",
+        };
+    },
+    mounted() {
+        let user = localStorage.getItem("user-info");
+        if (user) this.redirectTo({ link: "home" });
     },
     methods: {
-        login() {
+        async login() {
             this.v$.$validate();
+            if (!this.v$.$error) {
+                let result = await axios.get(
+                    `http://localhost:3000/users?email=${this.state.email}&password=${this.state.password}`
+                );
+                if (result.status == 200 && result.data.length > 0) {
+                    localStorage.setItem(
+                        "user-info",
+                        JSON.stringify(result.data)
+                    );
+                    this.redirectTo({ link: "home" });
+                } else {
+                    this.showMessage = "User not found";
+                }
+            }
         },
         ...mapActions(["redirectTo"]),
     },

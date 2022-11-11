@@ -13,6 +13,10 @@
     text-transform: capitalize;
 }
 
+input {
+    text-transform: lowercase;
+}
+
 nav {
     padding: 30px;
 
@@ -96,22 +100,27 @@ nav {
         font-size: 2rem;
         color: var(--black-color);
     }
+
     form {
         display: grid;
         gap: 1rem;
+
         .box {
             width: 100%;
             text-align: initial;
+
             input {
                 padding: 0.5rem;
                 width: 100%;
                 border: 3px solid var(--black-color);
             }
         }
+
         p {
             color: var(--light-color);
             display: flex;
             justify-content: flex-start;
+
             a {
                 font-weight: 500;
                 color: var(--light-color);
@@ -146,6 +155,7 @@ section {
     cursor: pointer;
     transition: 0.5s !important;
     border: 3px solid var(--main-color);
+
     &:hover {
         letter-spacing: 2px;
         background-color: var(--white-color);
