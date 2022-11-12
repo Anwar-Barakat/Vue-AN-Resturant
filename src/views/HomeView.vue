@@ -1,11 +1,11 @@
 <template>
+    <NavigationBar />
     <div class="home"></div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-// @ is an alias to /src
-
+import NavigationBar from "@/components/Navbar/Navbar.vue";
 export default {
     name: "HomeView",
     mounted() {
@@ -14,6 +14,9 @@ export default {
     },
     methods: {
         ...mapActions(["redirectTo"]),
+    },
+    components: {
+        NavigationBar,
     },
 };
 </script>
