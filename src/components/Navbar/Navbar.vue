@@ -35,10 +35,28 @@
                             <a> Home </a>
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" @click.prevent="logout()">
-                            logout
+                    <li class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="dropdownId"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            >Dropdown
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <router-link :to="{ name: 'profile' }">
+                                <a href="#" class="dropdown-item">Profile</a>
+                            </router-link>
+                            <a
+                                href="#"
+                                class="dropdown-item"
+                                @click.prevent="logout()"
+                            >
+                                logout
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </div>

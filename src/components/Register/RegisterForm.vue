@@ -7,7 +7,7 @@
                     type="text"
                     placeholder="type your name"
                     maxlength="20"
-                    v-model="name"
+                    v-model.trim="name"
                 />
                 <span
                     class="block mt-1 text-red-600 font-semibold text-sm"
@@ -20,7 +20,7 @@
                     type="email"
                     placeholder="type your email"
                     maxlength="50"
-                    v-model="email"
+                    v-model.trim="email"
                 />
                 <span
                     class="block mt-1 text-red-600 font-semibold text-sm"
@@ -33,7 +33,7 @@
                     type="password"
                     placeholder="type your password"
                     maxlength="20"
-                    v-model="password"
+                    v-model.trim="password"
                 />
                 <span
                     class="block mt-1 text-red-600 font-semibold text-sm"

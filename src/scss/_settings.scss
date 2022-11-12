@@ -163,3 +163,9 @@ section {
 .link {
     color: var(--second-color) !important;
 }
+
+@media (max-width: 551px) {
+    section.form-container {
+        margin: 2rem;
+    }
+}
