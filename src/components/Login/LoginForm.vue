@@ -1,6 +1,16 @@
 <template>
     <section class="form-container">
-        <div class="alert alert-danger" v-if="showMessage">
+        <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+            v-if="showMessage"
+        >
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+            ></button>
             {{ showMessage }}
         </div>
         <h3>login now</h3>
@@ -12,10 +22,10 @@
                     maxlength="50"
                     v-model="state.email"
                 />
-                <span
-                    class="block mt-1 text-red-600 font-semibold text-sm"
+                <small
+                    class="text text-danger text-bold fw-bold"
                     v-if="v$.email.$error"
-                    >{{ v$.email.$errors[0].$message }}</span
+                    >{{ v$.email.$errors.$message }}</small
                 >
             </div>
             <div class="box">
@@ -25,12 +35,12 @@
                     maxlength="50"
                     v-model="state.password"
                 />
-                <span
-                    class="block mt-1 text-red-600 font-semibold text-sm"
+                <small
+                    class="text text-danger text-bold fw-bold"
                     v-if="v$.password.$error"
                 >
                     {{ v$.password.$errors[0].$message }}
-                </span>
+                </small>
             </div>
             <div class="row">
                 <p>

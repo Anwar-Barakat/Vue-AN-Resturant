@@ -43,7 +43,8 @@
                             data-bs-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
-                            >Dropdown
+                        >
+                            Info
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
                             <router-link :to="{ name: 'profile' }">

@@ -9,11 +9,12 @@
                     maxlength="20"
                     v-model.trim="name"
                 />
-                <span
-                    class="block mt-1 text-red-600 font-semibold text-sm"
+                <small
+                    class="text text-danger text-bold fw-bold"
                     v-if="v$.name.$error"
-                    >{{ v$.name.$errors[0].$message }}</span
                 >
+                    {{ v$.name.$errors[0].$message }}
+                </small>
             </div>
             <div class="box">
                 <input
@@ -22,10 +23,10 @@
                     maxlength="50"
                     v-model.trim="email"
                 />
-                <span
-                    class="block mt-1 text-red-600 font-semibold text-sm"
+                <small
+                    class="text text-danger text-bold fw-bold"
                     v-if="v$.email.$error"
-                    >{{ v$.email.$errors[0].$message }}</span
+                    >{{ v$.email.$errors[0].$message }}</small
                 >
             </div>
             <div class="box">
@@ -35,12 +36,12 @@
                     maxlength="20"
                     v-model.trim="password"
                 />
-                <span
-                    class="block mt-1 text-red-600 font-semibold text-sm"
+                <small
+                    class="text text-danger text-bold fw-bold"
                     v-if="v$.password.$error"
                 >
                     {{ v$.password.$errors[0].$message }}
-                </span>
+                </small>
             </div>
             <div class="row">
                 <p>

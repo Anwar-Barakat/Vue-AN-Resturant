@@ -6,11 +6,7 @@ import LoginView from "../views/LoginView.vue";
 import ProfileView from "../views/ProfileView.vue";
 
 const routes = [
-    {
-        path: "/",
-        name: "home",
-        component: HomeView,
-    },
+    { path: "/", name: "home", component: HomeView },
     {
         path: "/about",
         name: "about",
@@ -20,21 +16,9 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
     },
-    {
-        path: "/register",
-        name: "register",
-        component: RegisterView,
-    },
-    {
-        path: "/login",
-        name: "login",
-        component: LoginView,
-    },
-    {
-        path: "/profile",
-        name: "profile",
-        component: ProfileView,
-    },
+    { path: "/register", name: "register", component: RegisterView },
+    { path: "/login", name: "login", component: LoginView },
+    { path: "/profile", name: "profile", component: ProfileView },
 ];
 
 const router = createRouter({
