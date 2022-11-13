@@ -26,4 +26,16 @@ const router = createRouter({
     routes,
 });
 
+router.beforeEach((to) => {
+    if (to.params.pageTitle != undefined) {
+        document.title = `${to.name} | ${to.params.pageTitle} | ${process.env.VUE_APP_TITLE}`;
+    } else {
+        if (to.name == null) {
+            document.title = `${process.env.VUE_APP_TITLE}`;
+        } else {
+            document.title = `${process.env.VUE_APP_TITLE} | ${to.name} `;
+        }
+    }
+});
+
 export default router;
