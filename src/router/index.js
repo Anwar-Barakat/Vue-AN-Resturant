@@ -4,6 +4,7 @@ import "./index";
 import RegisterView from "../views/RegisterView.vue";
 import LoginView from "../views/LoginView.vue";
 import ProfileView from "../views/ProfileView.vue";
+import ErrorView from "../views/ErrorView.vue";
 
 const routes = [
     { path: "/", name: "home", component: HomeView },
@@ -19,6 +20,7 @@ const routes = [
     { path: "/register", name: "register", component: RegisterView },
     { path: "/login", name: "login", component: LoginView },
     { path: "/profile", name: "profile", component: ProfileView },
+    { path: "/:catchAll(.*)", name: "404", component: ErrorView },
 ];
 
 const router = createRouter({
@@ -28,10 +30,12 @@ const router = createRouter({
 
 router.beforeEach((to) => {
     if (to.params.pageTitle != undefined) {
-        document.title = `${to.name} | ${to.params.pageTitle} | ${process.env.VUE_APP_TITLE}`;
+        document.title = `${process.env.VUE_APP_TITLE} | ${to.params.pageTitle}`;
     } else {
         if (to.name == null) {
             document.title = `${process.env.VUE_APP_TITLE}`;
+        } else if (to.params.pageTitle != undefined) {
+            document.title = `${process.env.VUE_APP_TITLE} | ${to.params.pageTitle} `;
         } else {
             document.title = `${process.env.VUE_APP_TITLE} | ${to.name} `;
         }

@@ -30,7 +30,10 @@
                         <router-link
                             exact
                             class="nav-link"
-                            :to="{ name: 'home', pageTitle: 'Home Page' }"
+                            :to="{
+                                name: 'home',
+                                params: { pageTitle: 'Home Page' },
+                            }"
                         >
                             <a> Home </a>
                         </router-link>
