@@ -16,7 +16,7 @@
 }
 
 input {
-  text-transform: lowercase;
+  text-transform: initial !important;
 }
 
 :root {
@@ -184,5 +184,11 @@ section {
 
 .link {
   color: var(--second-color) !important;
+}
+
+@media (max-width: 551px) {
+  section.form-container {
+    margin: 2rem;
+  }
 }
 /*# sourceMappingURL=custom.css.map */
