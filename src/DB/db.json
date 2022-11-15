@@ -1,10 +1,11 @@
 {
-  "users": [
-    {
-      "name": "Anwar barakat",
-      "email": "brkatanwar0@gmail.com",
-      "password": "adminadmin",
-      "id": 1
-    }
-  ]
+    "users": [
+        {
+            "name": "Anwar barakat",
+            "email": "brkatanwar0@gmail.com",
+            "password": "adminadmin",
+            "id": 1
+        }
+    ],
+    "locations": []
 }
