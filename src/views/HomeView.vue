@@ -2,14 +2,12 @@
     <NavigationBar />
     <div class="container">
         <UserLocations :locations="this.listOfLocations" />
-        <AddNewLocation />
     </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
 import NavigationBar from "@/components/Navbar/Navbar.vue";
-import AddNewLocation from "@/components/Locations/AddNewLocation.vue";
 import UserLocations from "@/components/Locations/UserLocations.vue";
 import axios from "axios";
 export default {
@@ -40,7 +38,6 @@ export default {
     },
     components: {
         NavigationBar,
-        AddNewLocation,
         UserLocations,
     },
 };

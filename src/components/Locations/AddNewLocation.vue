@@ -1,120 +1,75 @@
 <template>
-    <button
-        type="button"
-        class="btn btn-primary d-block"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-    >
-        Add New Restaurant
-    </button>
-
-    <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form>
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            Restaurant Location
-                        </h5>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        ></button>
-                    </div>
-                    <div class="modal-body">
-                        <div
-                            class="alert alert-success alert-dismissible fade show mb-3"
-                            role="alert"
-                            v-if="successMessage"
-                        >
-                            <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="alert"
-                                aria-label="Close"
-                            ></button>
-                            {{ successMessage }}
-                        </div>
-                        <div class="form-group mb-3 text-start">
-                            <label for="title">Title</label>
-                            <input
-                                class="form-control"
-                                type="text"
-                                id="title"
-                                placeholder="Restaurant Title"
-                                v-model.trim="state.title"
-                            />
-                            <small
-                                class="text text-danger text-bold fw-bold"
-                                v-if="v$.title.$error"
-                            >
-                                {{ v$.title.$errors[0].$message }}
-                            </small>
-                        </div>
-                        <div class="form-group mb-3 text-start">
-                            <label for="phone">Phone</label>
-                            <input
-                                class="form-control"
-                                type="tel"
-                                id="phone"
-                                placeholder="Restaurant Phone"
-                                v-model.trim="state.phone"
-                            />
-                            <small
-                                class="text text-danger text-bold fw-bold"
-                                v-if="v$.phone.$error"
-                            >
-                                {{ v$.phone.$errors[0].$message }}
-                            </small>
-                        </div>
-                        <div class="form-group mb-3 text-start">
-                            <label for="address"> Address </label>
-                            <input
-                                class="form-control"
-                                type="text"
-                                id="address"
-                                placeholder="Restaurant Address"
-                                v-model.trim="state.address"
-                            />
-                            <small
-                                class="text text-danger text-bold fw-bold"
-                                v-if="v$.address.$error"
-                            >
-                                {{ v$.address.$errors[0].$message }}
-                            </small>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >
-                            Close
-                        </button>
-                        <button
-                            type="submit"
-                            class="btn btn-primary"
-                            @click.prevent="addLocation()"
-                        >
-                            Submit
-                        </button>
-                    </div>
-                </form>
-            </div>
+    <NavigationBar />
+    <section class="form-container">
+        <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+            v-if="showMessage"
+        >
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+            ></button>
+            {{ showMessage }}
         </div>
-    </div>
+        <h3>Add New Location</h3>
+        <form>
+            <div class="modal-body">
+                <div class="box mb-3">
+                    <input
+                        type="text"
+                        placeholder="Restaurant Title"
+                        v-model.trim="state.title"
+                    />
+                    <small
+                        class="text text-danger text-bold fw-bold"
+                        v-if="v$.title.$error"
+                    >
+                        {{ v$.title.$errors[0].$message }}
+                    </small>
+                </div>
+                <div class="box mb-3">
+                    <input
+                        type="tel"
+                        placeholder="Restaurant Phone"
+                        v-model.trim="state.phone"
+                    />
+                    <small
+                        class="text text-danger text-bold fw-bold"
+                        v-if="v$.phone.$error"
+                    >
+                        {{ v$.phone.$errors[0].$message }}
+                    </small>
+                </div>
+                <div class="box mb-3">
+                    <input
+                        type="text"
+                        placeholder="Restaurant Address"
+                        v-model.trim="state.address"
+                    />
+                    <small
+                        class="text text-danger text-bold fw-bold"
+                        v-if="v$.address.$error"
+                    >
+                        {{ v$.address.$errors[0].$message }}
+                    </small>
+                </div>
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    @click.prevent="addLocation()"
+                >
+                    Submit
+                </button>
+            </div>
+        </form>
+    </section>
 </template>
 
 <script>
+import NavigationBar from "@/components/Navbar/Navbar.vue";
 import useVuelidate from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
 import { reactive, computed } from "vue";
@@ -185,6 +140,9 @@ export default {
             }
         },
         ...mapActions(["redirectTo"]),
+    },
+    components: {
+        NavigationBar,
     },
 };
 </script>

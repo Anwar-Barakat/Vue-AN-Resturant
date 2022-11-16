@@ -4,6 +4,7 @@ import "./index";
 import RegisterView from "../views/RegisterView.vue";
 import LoginView from "../views/LoginView.vue";
 import ProfileView from "../views/ProfileView.vue";
+import AddNewLocation from "@/components/Locations/AddNewLocation.vue";
 import ErrorView from "../views/ErrorView.vue";
 
 const routes = [
@@ -20,6 +21,11 @@ const routes = [
     { path: "/register", name: "register", component: RegisterView },
     { path: "/login", name: "login", component: LoginView },
     { path: "/profile", name: "profile", component: ProfileView },
+    {
+        path: "/locations/add",
+        name: "locations.add",
+        component: AddNewLocation,
+    },
     { path: "/:catchAll(.*)", name: "404", component: ErrorView },
 ];
 

@@ -29,6 +29,12 @@
         </tbody>
     </table>
     <div class="alert alert-warning" v-else>No Locations Added</div>
+    <router-link
+        :to="{ name: 'locations.add', params: { pageTitle: 'Add Location' } }"
+        class="d-flex fit-content"
+    >
+        <button type="button" class="btn btn-primary">Add Location</button>
+    </router-link>
 </template>
 
 <script>
