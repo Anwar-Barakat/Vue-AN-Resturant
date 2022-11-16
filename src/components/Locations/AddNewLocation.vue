@@ -1,116 +1,114 @@
 <template>
-    <div class="container">
-        <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-        >
-            Add New Restaurant
-        </button>
+    <button
+        type="button"
+        class="btn btn-primary d-block"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+    >
+        Add New Restaurant
+    </button>
 
-        <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">
-                                Restaurant Location
-                            </h5>
+    <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Restaurant Location
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div
+                            class="alert alert-success alert-dismissible fade show mb-3"
+                            role="alert"
+                            v-if="successMessage"
+                        >
                             <button
                                 type="button"
                                 class="btn-close"
-                                data-bs-dismiss="modal"
+                                data-bs-dismiss="alert"
                                 aria-label="Close"
                             ></button>
+                            {{ successMessage }}
                         </div>
-                        <div class="modal-body">
-                            <div
-                                class="alert alert-success alert-dismissible fade show mb-3"
-                                role="alert"
-                                v-if="showMessage"
+                        <div class="form-group mb-3 text-start">
+                            <label for="title">Title</label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="title"
+                                placeholder="Restaurant Title"
+                                v-model.trim="state.title"
+                            />
+                            <small
+                                class="text text-danger text-bold fw-bold"
+                                v-if="v$.title.$error"
                             >
-                                <button
-                                    type="button"
-                                    class="btn-close"
-                                    data-bs-dismiss="alert"
-                                    aria-label="Close"
-                                ></button>
-                                {{ showMessage }}
-                            </div>
-                            <div class="form-group mb-3 text-start">
-                                <label for="title">Title</label>
-                                <input
-                                    class="form-control"
-                                    type="text"
-                                    id="title"
-                                    placeholder="Restaurant Title"
-                                    v-model.trim="state.title"
-                                />
-                                <small
-                                    class="text text-danger text-bold fw-bold"
-                                    v-if="v$.title.$error"
-                                >
-                                    {{ v$.title.$errors[0].$message }}
-                                </small>
-                            </div>
-                            <div class="form-group mb-3 text-start">
-                                <label for="phone">Phone</label>
-                                <input
-                                    class="form-control"
-                                    type="tel"
-                                    id="phone"
-                                    placeholder="Restaurant Phone"
-                                    v-model.trim="state.phone"
-                                />
-                                <small
-                                    class="text text-danger text-bold fw-bold"
-                                    v-if="v$.phone.$error"
-                                >
-                                    {{ v$.phone.$errors[0].$message }}
-                                </small>
-                            </div>
-                            <div class="form-group mb-3 text-start">
-                                <label for="address"> Address </label>
-                                <input
-                                    class="form-control"
-                                    type="text"
-                                    id="address"
-                                    placeholder="Restaurant Address"
-                                    v-model.trim="state.address"
-                                />
-                                <small
-                                    class="text text-danger text-bold fw-bold"
-                                    v-if="v$.address.$error"
-                                >
-                                    {{ v$.address.$errors[0].$message }}
-                                </small>
-                            </div>
+                                {{ v$.title.$errors[0].$message }}
+                            </small>
                         </div>
-                        <div class="modal-footer">
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                data-bs-dismiss="modal"
+                        <div class="form-group mb-3 text-start">
+                            <label for="phone">Phone</label>
+                            <input
+                                class="form-control"
+                                type="tel"
+                                id="phone"
+                                placeholder="Restaurant Phone"
+                                v-model.trim="state.phone"
+                            />
+                            <small
+                                class="text text-danger text-bold fw-bold"
+                                v-if="v$.phone.$error"
                             >
-                                Close
-                            </button>
-                            <button
-                                type="submit"
-                                class="btn btn-primary"
-                                @click.prevent="addLocation()"
-                            >
-                                Submit
-                            </button>
+                                {{ v$.phone.$errors[0].$message }}
+                            </small>
                         </div>
-                    </form>
-                </div>
+                        <div class="form-group mb-3 text-start">
+                            <label for="address"> Address </label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="address"
+                                placeholder="Restaurant Address"
+                                v-model.trim="state.address"
+                            />
+                            <small
+                                class="text text-danger text-bold fw-bold"
+                                v-if="v$.address.$error"
+                            >
+                                {{ v$.address.$errors[0].$message }}
+                            </small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            @click.prevent="addLocation()"
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -146,7 +144,7 @@ export default {
     data() {
         return {
             userId: "",
-            showMessage: "",
+            successMessage: "",
         };
     },
     mounted() {
@@ -168,8 +166,19 @@ export default {
                     }
                 );
                 if (result.status == 201) {
-                    this.showMessage =
+                    this.successMessage =
                         "Restaurant Location Has Added Successfully";
+                    setTimeout(() => {
+                        (this.state.title = ""),
+                            (this.state.phone = ""),
+                            (this.state.address = ""),
+                            (this.userId = ""),
+                            (this.successMessage = ""),
+                            (this.v$.title.$errors[0].$message = "");
+                        this.v$.address.$errors[0].$message = "";
+                        this.v$.phone.$errors[0].$message = "";
+                    }, 2000);
+                    this.redirectTo({ link: "home" });
                 } else {
                     this.redirectTo({ link: "home" });
                 }
