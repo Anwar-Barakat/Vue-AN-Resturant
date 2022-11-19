@@ -1,21 +1,21 @@
 <template>
     <NavigationBar />
     <section class="form-container">
-        <div
-            class="alert alert-danger alert-dismissible fade show"
-            role="alert"
-            v-if="showMessage"
-        >
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-            ></button>
-            {{ showMessage }}
-        </div>
         <h3>Add New Location</h3>
         <form>
+            <div
+                class="alert alert-success alert-dismissible fade show"
+                role="alert"
+                v-if="successMessage"
+            >
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                ></button>
+                {{ successMessage }}
+            </div>
             <div class="modal-body">
                 <div class="box mb-3">
                     <input
@@ -124,16 +124,8 @@ export default {
                     this.successMessage =
                         "Restaurant Location Has Added Successfully";
                     setTimeout(() => {
-                        (this.state.title = ""),
-                            (this.state.phone = ""),
-                            (this.state.address = ""),
-                            (this.userId = ""),
-                            (this.successMessage = ""),
-                            (this.v$.title.$errors[0].$message = "");
-                        this.v$.address.$errors[0].$message = "";
-                        this.v$.phone.$errors[0].$message = "";
-                    }, 2000);
-                    this.redirectTo({ link: "home" });
+                        this.redirectTo({ link: "home" });
+                    }, 3000);
                 } else {
                     this.redirectTo({ link: "home" });
                 }
