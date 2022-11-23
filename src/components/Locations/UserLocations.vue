@@ -24,7 +24,18 @@
                 <td>{{ location.title }}</td>
                 <td>{{ location.phone }}</td>
                 <td>{{ location.address }}</td>
-                <td></td>
+                <td>
+                    <router-link
+                        :to="{
+                            name: 'locations.delete',
+                            params: { locationId: location.id },
+                        }"
+                    >
+                        <button class="btn-sm btn-danger text text-danger">
+                            <FontAwesome icon="trash" />
+                        </button>
+                    </router-link>
+                </td>
             </tr>
         </tbody>
     </table>

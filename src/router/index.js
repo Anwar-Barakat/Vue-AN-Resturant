@@ -5,6 +5,7 @@ import RegisterView from "../views/RegisterView.vue";
 import LoginView from "../views/LoginView.vue";
 import ProfileView from "../views/ProfileView.vue";
 import AddNewLocation from "@/components/Locations/AddNewLocation.vue";
+import DeleteLocation from "@/components/Locations/DeleteLocation.vue";
 import ErrorView from "../views/ErrorView.vue";
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
         path: "/locations/add",
         name: "locations.add",
         component: AddNewLocation,
+    },
+    {
+        path: "/locations/delete/:locationId",
+        name: "locations.delete",
+        component: DeleteLocation,
     },
     { path: "/:catchAll(.*)", name: "404", component: ErrorView },
 ];
